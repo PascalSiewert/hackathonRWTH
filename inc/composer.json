@@ -1,0 +1,5 @@
+{
+    "require": {
+        "cschalenborgh/php-zalando": "dev-master"
+    }
+}
