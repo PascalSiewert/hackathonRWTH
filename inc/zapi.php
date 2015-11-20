@@ -6,12 +6,23 @@
   use ZalandoPHP\Operations\Articles;
   use ZalandoPHP\Operations\Filters;
   use ZalandoPHP\Operations\Facets;
+  use Wambosoft\Article;
 
-echo '<pre>';
-print_r(getArticles(['kind' => 'hose']));
-echo '</pre>';
-//getArticles(['kind' => 'hose']);
+  header('Content-Type: application/json');
 
+  $options = array();
+
+  if(isset($_GET)) {
+    if(isset($_GET['pagesize'])) {
+      $options['pageSize'] = intval($_GET['pagesize']);
+    }
+
+    if(isset($_GET['cat'])) {
+      $options['cat'] = $_GET['cat'];
+    }
+  }
+
+  echo json_encode(getArticles($options));
 
 function getArticles($options = null) {
   $conf = new GenericConfiguration();
@@ -24,10 +35,15 @@ function getArticles($options = null) {
   } catch (\Exception $e) {
       echo $e->getMessage();
   }
+
   $zalandoPHP = new ZalandoPHP($conf);
   $articles = new Articles();
 
   $allArticles = $zalandoPHP->runOperation($articles);
+
+
+
+  //echo print_r($allArticles, true);
 
   if(!is_null($options) && count($options) > 0) {
     if(isset($options['color'])) {
@@ -40,24 +56,26 @@ function getArticles($options = null) {
       $articles->setPage($options['page']);
     }
     if(isset($options['pageSize'])) {
-      $articles->setPageSize(5);
+      $articles->setPageSize($options['pageSize']);
     }
 
     $allArticles = $zalandoPHP->runOperation($articles);
 
-    if(isset($options['kind'])) {
+    if(isset($options['cat'])) {
 
       $filteredArticles = array();
+      $filteredArticles['content'] = array();
       for($i = 0; $i < count($allArticles['content']); $i++)
       {
         foreach($allArticles['content'][$i]['categoryKeys'] as $element) {
-          if(strpos($element, $options['kind'])) {
-            array_push($filteredArticles, $allArticles['content'][$i]);
+          if(strpos($element, $options['cat'])) {
+            array_push($filteredArticles['content'], $allArticles['content'][$i]);
+            break;
           }
         }
       }
 
-      return $filteredArticles;
+      $allArticles = $filteredArticles;
     }
   }
 
