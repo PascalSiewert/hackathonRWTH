@@ -12,6 +12,7 @@
 
   $options = array();
 
+  // GET-Parameter auswerten
   if(isset($_GET)) {
     if(isset($_GET['pagesize'])) {
       $options['pageSize'] = intval($_GET['pagesize']);
@@ -24,6 +25,9 @@
 
   echo json_encode(getArticles($options));
 
+/**
+  * Gibt alle Artikel zurueck bzw. filtert auch mit Hilfe des options-Parameters
+  */
 function getArticles($options = null) {
   $conf = new GenericConfiguration();
 
@@ -39,12 +43,10 @@ function getArticles($options = null) {
   $zalandoPHP = new ZalandoPHP($conf);
   $articles = new Articles();
 
+  // Alle Artikel holen
   $allArticles = $zalandoPHP->runOperation($articles);
 
-
-
-  //echo print_r($allArticles, true);
-
+  // Options Parameter auswerten
   if(!is_null($options) && count($options) > 0) {
     if(isset($options['color'])) {
       $articles->setColor($options['color']);
@@ -65,6 +67,7 @@ function getArticles($options = null) {
 
       $filteredArticles = array();
       $filteredArticles['content'] = array();
+      // Artikel filtern nach deren Kategorie
       for($i = 0; $i < count($allArticles['content']); $i++)
       {
         foreach($allArticles['content'][$i]['categoryKeys'] as $element) {
