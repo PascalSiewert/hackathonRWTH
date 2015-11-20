@@ -6,26 +6,74 @@
 
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
       <link rel="stylesheet" type="text/css" href="css/style.css">
+	  
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	  <script src="js/dropdown.js"></script>
   </head>
   <body>
-    <div class="container-fluid">
+        <div class="head">
+            <div class="btn-left" onclick="headLeft()">
+                <i class="glyphicon glyphicon-chevron-left"></i>    
+            </div>
+            <div class="headImg" onclick="headDD()">
+               
+            </div>
+            <div class="btn-right" onclick="headRight()">
+                <i class="glyphicon glyphicon-chevron-right"></i>
+            </div>
+        </div>
+        <div class="headText">
+            Artikel: Hut <br>
+            Preis: 20.00€ <br>   
+            Beschreibung: <br>
+            Brauner Hut exklusiv hergestellt von dem weltbekannten
+            Designer Carsten Motter aus der Kaiserstadt Aachen in Deutschland.
+        </div>
+        
+        <div class="body">
+            <div class="btn-left" onclick="bodyLeft()">
+                <i class="glyphicon glyphicon-chevron-left"></i>    
+            </div>
+            <div class="bodyImg" onclick="bodyDD()">
 
-          <!-- Header -->
-          <div class="row">
-            <header>
-              <div class="jumbotron">
-                <h1>#HackathonRWTH</h1>
-              </div>
-            </header>
-          </div>
+            </div>
+            <div class="btn-right" onclick="bodyRight()">
+                <i class="glyphicon glyphicon-chevron-right"></i>
+            </div>
+        </div>
+        <div class="bodyText">
+                Hemd
+        </div>
+        
+        <div class="legs">
+            <div class="btn-left" onclick="legsLeft()">
+                <i class="glyphicon glyphicon-chevron-left"></i>    
+            </div>
+            <div class="legsImg" onclick="legsDD()">
 
-          <!-- Content -->
-          <div class="row">
-            
-          </div>
+            </div>
+            <div class="btn-right" onclick="legsRight()">
+                <i class="glyphicon glyphicon-chevron-right"></i>
+            </div>            
+        </div>
+        <div class="legsText">
+                Hose
+        </div>
+        
+        <div class="feet">
+            <div class="btn-left" onclick="feetLeft()">
+                <i class="glyphicon glyphicon-chevron-left"></i>    
+            </div>
+            <div class="feetImg" onclick="feetDD()">
 
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-          <script src="js/script.js"></script>
-    </div>
-  </body>
+            </div>
+            <div class="btn-right" onclick="feetRight()">
+                <i class="glyphicon glyphicon-chevron-right"></i>
+            </div>
+        </div>
+        <div class="feetText">
+              Schuhe  
+        </div>
+	
+    </body>
 </html>
